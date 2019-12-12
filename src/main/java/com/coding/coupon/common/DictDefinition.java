@@ -14,6 +14,7 @@ package com.coding.coupon.common;
 
 import com.coding.helpers.tool.cmp.exception.AppBaseStatus;
 import com.coding.helpers.tool.cmp.exception.AppException;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -98,6 +99,58 @@ public interface DictDefinition {
         @NonNull private Integer value;
 
         public static final String NAME = "product_status";
+
+        @Override
+        public Integer getValue() {
+            return value;
+        }
+    }
+
+    /** 【仅定义在代码】优惠券类型. */
+    @RequiredArgsConstructor
+    enum CouponCategory implements BaseEnum<Integer> {
+        MAN_JIAN(1, "满减券"),
+        ZHE_KOU(2, "折扣券"),
+        LI_JIAN(3, "满减券"),
+        ;
+        @NonNull private Integer value;
+        @NonNull @Getter private String desc;
+
+        public static final String NAME = "coupon_category";
+
+        @Override
+        public Integer getValue() {
+            return value;
+        }
+    }
+
+    /** 【仅定义在代码】产品线. */
+    @RequiredArgsConstructor
+    enum DistributeTarget implements BaseEnum<Integer> {
+        SINGLE(1, "单用户"),
+        MULTI(2, "多用户"),
+        ;
+        @NonNull private Integer value;
+        @NonNull @Getter private String desc;
+
+        public static final String NAME = "distribute_target";
+
+        @Override
+        public Integer getValue() {
+            return value;
+        }
+    }
+
+    /** 【仅定义在代码】产品线. */
+    @RequiredArgsConstructor
+    enum ProductLine implements BaseEnum<Integer> {
+        DA_MAO(1, "大猫"),
+        DA_BAO(2, "大宝"),
+        ;
+        @NonNull private Integer value;
+        @NonNull @Getter private String desc;
+
+        public static final String NAME = "product_line";
 
         @Override
         public Integer getValue() {
