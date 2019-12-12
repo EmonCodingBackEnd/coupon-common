@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.coding.coupon</groupId>
+    <artifactId>coupon-common</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>coupon-common</name>
+
+    <parent>
+        <artifactId>helper-parent</artifactId>
+        <groupId>com.coding.helpers</groupId>
+        <version>1.0.0-SNAPSHOT</version> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <dynamic.host>repo.emon.vip</dynamic.host>
+        <dynamic.url>http://${dynamic.host}</dynamic.url>
+        <dynamic.sslurl>https://${dynamic.host}</dynamic.sslurl>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 定义三方包 beg -->
+            <!-- 定义三方包 end -->
+
+            <!-- 定义二方包 beg -->
+            <!-- 定义二方包 end -->
+
+            <!-- 定义一方包 beg -->
+            <!-- 定义一方包 end -->
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- 引入三方包 beg -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        
+        <!--Net-->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+        <!--http客户端-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient-cache</artifactId>
+            <version>4.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>4.1.3</version>
+        </dependency>
+        <!-- 引入三方包 end -->
+
+        <!-- 引入二方包 beg -->
+        <dependency>
+            <groupId>com.coding.helpers.tool</groupId>
+            <artifactId>tool-cmp-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.coding.helpers.tool</groupId>
+            <artifactId>tool-cmp-idempotent</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.coding.helpers.tool</groupId>
+            <artifactId>tool-cmp-common</artifactId>
+        </dependency>
+        <!-- 引入二方包 end -->
+
+        <!-- 引入一方包 beg -->
+        <!-- 引入一方包 end -->
+    </dependencies>
+
+    <!--避免到用户的.m2目录下寻找settings.xml找不到的问题-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <!--与虚拟机nexus私服不同台服务器时-->
+            <id>virtual-client</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>nexus-releases</id>
+                    <url>${dynamic.url}/repository/maven-public/</url>
+                    <releases>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>nexus-snapshots</id>
+                    <url>${dynamic.url}/repository/maven-snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>nexus-releases</id>
+                    <url>${dynamic.url}/repository/maven-public/</url>
+                    <releases>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>nexus-snapshots</id>
+                    <url>${dynamic.url}/repository/maven-snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+            <distributionManagement>
+                <repository>
+                    <id>nexus-releases</id>
+                    <name>nexus release Repository</name>
+                    <url>${dynamic.url}/repository/maven-releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>nexus-snapshots</id>
+                    <name>nexus snapshots Repository</name>
+                    <url>${dynamic.url}/repository/maven-snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+</project>
