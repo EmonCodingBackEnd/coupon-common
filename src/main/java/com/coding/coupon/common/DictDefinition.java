@@ -40,8 +40,8 @@ public interface DictDefinition {
     }
 
     /** 根据C类型的value值获取枚举实例，如果找不到则返回null. */
-    static <C, T extends BaseEnum> T getByValue(Class<T> enumClazz, C value) {
-        for (T each : enumClazz.getEnumConstants()) {
+    static <T, E extends BaseEnum> E getByValue(Class<E> enumClazz, T value) {
+        for (E each : enumClazz.getEnumConstants()) {
             if (each.getValue().equals(value)) {
                 return each;
             }
@@ -50,13 +50,13 @@ public interface DictDefinition {
     }
 
     /** 根据C类型从value值获取枚举实例，如果找不到则抛异常. */
-    static <C, T extends BaseEnum<C>> T getByValueNoisy(Class<T> enumClazz, C value) {
-        T t = getByValue(enumClazz, value);
-        if (t == null) {
+    static <T, E extends BaseEnum> E getByValueNoisy(Class<E> enumClazz, T value) {
+        E e = getByValue(enumClazz, value);
+        if (e == null) {
             log.error("【字典查询】根据字典值找不到对应字典, enumClazz={}, value={}", enumClazz, value);
             throw new AppException(AppBaseStatus.systemExpectedError(), "根据字典值找不到对应字典");
         }
-        return t;
+        return e;
     }
 
     // ==================================================华丽的分割线==================================================
