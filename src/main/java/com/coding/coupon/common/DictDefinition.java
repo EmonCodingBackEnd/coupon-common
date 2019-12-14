@@ -157,4 +157,23 @@ public interface DictDefinition {
             return value;
         }
     }
+
+    /** 【仅定义在代码】有效期规则. */
+    @RequiredArgsConstructor
+    enum PeriodType implements BaseEnum<Integer> {
+        /** 绝对日期(固定日期). */
+        REGULAR(1, "绝对日期"),
+        /** 相对日期(变动日期，以领取之日开始计算). */
+        SHIFT(2, "相对日期"),
+        ;
+        @NonNull private Integer value;
+        @NonNull @Getter private String desc;
+
+        public static final String NAME = "period_type";
+
+        @Override
+        public Integer getValue() {
+            return value;
+        }
+    }
 }
