@@ -10,8 +10,9 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20180515-01         Rushing0711     M201805151041 新建文件
  ********************************************************************************/
-package com.coding.coupon.common.cache.redis.timer.schedule;
+package com.coding.coupon.common.timer.schedule;
 
+import com.coding.coupon.common.JsonConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 
@@ -31,8 +32,14 @@ import java.lang.reflect.Method;
 public class AsyncUncaughtHandler implements AsyncUncaughtExceptionHandler {
 
     @Override
+    @SuppressWarnings("all")
     public void handleUncaughtException(Throwable throwable, Method method, Object... objects) {
-        String message = String.format("【异步方法执行】异常,method=%s", method.getName());
+        String message =
+                String.format(
+                        "【异步方法执行】异常,throwable=%s, method=%s, params=%s",
+                        throwable.getMessage(), method.getName(), JsonConverter.toJson(objects));
         log.error(message, throwable);
+
+        // TODO: 2019/12/15 发送邮件或短信，做进一步处理
     }
 }

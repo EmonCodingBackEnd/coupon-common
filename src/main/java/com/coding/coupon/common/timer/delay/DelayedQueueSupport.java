@@ -10,9 +10,9 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20180515-01         Rushing0711     M201805151336 新建文件
  ********************************************************************************/
-package com.coding.coupon.common.cache.redis.timer.delay;
+package com.coding.coupon.common.timer.delay;
 
-import com.coding.coupon.common.cache.redis.timer.TimerPoolConfig;
+import com.coding.coupon.common.timer.TimerPoolConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;

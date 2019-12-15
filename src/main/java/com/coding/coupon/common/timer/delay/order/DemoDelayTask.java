@@ -1,5 +1,5 @@
 /*
- * 文件名称：OrderDelayTask.java
+ * 文件名称：DemoDelayTask.java
  * 系统名称：[系统名称]
  * 模块名称：订单延时任务
  * 软件版权：Copyright (c) 2011-2018, liming20110711@163.com All Rights Reserved.
@@ -10,9 +10,9 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20180515-01         Rushing0711     M201805151421 新建文件
  ********************************************************************************/
-package com.coding.coupon.common.cache.redis.timer.delay.order;
+package com.coding.coupon.common.timer.delay.order;
 
-import com.coding.coupon.common.cache.redis.timer.delay.DelayRetryTask;
+import com.coding.coupon.common.timer.delay.DelayRetryTask;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -20,7 +20,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * 订单延时任务.
+ * 演示版延时任务，如有需要，请拷贝到具体微服务修改.
  *
  * <p>
  *
@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class OrderDelayTask extends DelayRetryTask implements ApplicationContextAware {
+public class DemoDelayTask extends DelayRetryTask implements ApplicationContextAware {
 
     private static final long serialVersionUID = -9157077217216143833L;
 
@@ -43,15 +43,15 @@ public class OrderDelayTask extends DelayRetryTask implements ApplicationContext
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if (OrderDelayTask.applicationContext == null) {
-            OrderDelayTask.applicationContext = applicationContext;
+        if (DemoDelayTask.applicationContext == null) {
+            DemoDelayTask.applicationContext = applicationContext;
         }
     }
 
     // 定义私有构造器，防止被外部初始化
-    private OrderDelayTask() {}
+    private DemoDelayTask() {}
 
-    public OrderDelayTask(Long orderId) {
+    public DemoDelayTask(Long orderId) {
         this.orderId = orderId;
     }
 

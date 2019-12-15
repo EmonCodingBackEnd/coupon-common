@@ -10,7 +10,7 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20180516-01         Rushing0711     M201805161006 新建文件
  ********************************************************************************/
-package com.coding.coupon.common.cache.redis.timer.delay;
+package com.coding.coupon.common.timer.delay;
 
 import java.io.Serializable;
 

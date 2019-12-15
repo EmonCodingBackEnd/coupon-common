@@ -1,5 +1,6 @@
 package com.coding.coupon.common.validation.constraints;
 
+import com.coding.coupon.common.DictDefinition;
 import com.coding.coupon.common.validation.validator.EnumValueValidator;
 
 import javax.validation.Constraint;
@@ -22,6 +23,8 @@ public @interface EnumValue {
     String[] strValues() default {};
 
     int[] intValues() default {};
+
+    Class<? extends DictDefinition.BaseEnum> enumClazz() default DictDefinition.BaseEnum.class;
 
     // 分组
     Class<?>[] groups() default {};

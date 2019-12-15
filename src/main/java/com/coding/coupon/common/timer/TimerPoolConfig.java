@@ -10,7 +10,7 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20180515-01         Rushing0711     M201805151038 新建文件
  ********************************************************************************/
-package com.coding.coupon.common.cache.redis.timer;
+package com.coding.coupon.common.timer;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -59,6 +59,8 @@ public class TimerPoolConfig {
 
         private int keeyAliveSecond;
 
+        private int awaitTerminationSeconds;
+
         private String delayTaskQueueDaemonThreadName;
     }
 
@@ -83,6 +85,8 @@ public class TimerPoolConfig {
         private int queueCapacity;
 
         private int keeyAliveSecond;
+
+        private int awaitTerminationSeconds;
     }
 
     @ConditionalOnProperty(value = "timerpool.delay.enabled", havingValue = "true")
@@ -102,6 +106,10 @@ public class TimerPoolConfig {
         delayQueueExecutor.setMaxPoolSize(delay.getMaxPoolSize());
         delayQueueExecutor.setQueueCapacity(delay.getQueueCapacity());
         delayQueueExecutor.setKeepAliveSeconds(delay.getKeeyAliveSecond());
+
+        delayQueueExecutor.setWaitForTasksToCompleteOnShutdown(true);
+        delayQueueExecutor.setAwaitTerminationSeconds(delay.getAwaitTerminationSeconds());
+
         /*
          * Rejected-policy：当pool已经达到max size的时候，如何处理新任务。
          * CALLER_RUNS：不在新线程中执行任务，而是由调用者所在的线程来执行。
@@ -127,8 +135,10 @@ public class TimerPoolConfig {
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
         scheduler.setThreadNamePrefix(schedule.getThreadNamePrefix());
         scheduler.setPoolSize(schedule.getPoolSize());
-        scheduler.setAwaitTerminationSeconds(schedule.getAwaitTerminationSeconds());
+
         scheduler.setWaitForTasksToCompleteOnShutdown(true);
+        scheduler.setAwaitTerminationSeconds(schedule.getAwaitTerminationSeconds());
+
         return scheduler;
     }
 
@@ -153,6 +163,10 @@ public class TimerPoolConfig {
         executor.setMaxPoolSize(async.getMaxPoolSize());
         executor.setQueueCapacity(async.getQueueCapacity());
         executor.setKeepAliveSeconds(async.getKeeyAliveSecond());
+
+        executor.setWaitForTasksToCompleteOnShutdown(true);
+        executor.setAwaitTerminationSeconds(async.getAwaitTerminationSeconds());
+
         /*
          * Rejected-policy：当pool已经达到max size的时候，如何处理新任务。
          * CALLER_RUNS：不在新线程中执行任务，而是由调用者所在的线程来执行。

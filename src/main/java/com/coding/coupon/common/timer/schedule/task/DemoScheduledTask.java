@@ -1,5 +1,5 @@
 /*
- * 文件名称：ScheduledService.java
+ * 文件名称：DemoScheduledTask.java
  * 系统名称：[系统名称]
  * 模块名称：定时器任务类
  * 软件版权：Copyright (c) 2011-2018, liming20110711@163.com All Rights Reserved.
@@ -10,7 +10,7 @@
  * <Version>        <DateSerial>        <Author>        <Description>
  * 1.0.0            20180515-01         Rushing0711     M201805151038 新建文件
  ********************************************************************************/
-package com.coding.coupon.common.cache.redis.timer.schedule.task;
+package com.coding.coupon.common.timer.schedule.task;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import java.time.format.DateTimeFormatter;
 
 /**
- * 定时器任务类.
+ * 演示版定时器任务类，如有需要，请拷贝到具体微服务修改.
  *
  * <p>
  *
@@ -31,7 +31,7 @@ import java.time.format.DateTimeFormatter;
  */
 @Component
 @Slf4j
-public class ScheduledTask {
+public class DemoScheduledTask {
 
     private static final DateTimeFormatter formatter =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -64,29 +64,29 @@ public class ScheduledTask {
     @Scheduled(fixedDelay = 10000)
     public void scheduled11() throws InterruptedException {
         log.info(
-                "=====>>>>>开始fixedDelay1  {}",
+                "=====>>>>>开始fixedDelay1 {}",
                 TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
         TimeUnit.SECONDS.sleep(5);
-        log.info("=====>>>>>结束fixedDelay1  {}", Thread.currentThread().getName());
+        log.info("=====>>>>>结束fixedDelay1 {}", TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
     }
 
     // 上一次任务执行开始，到下一次任务执行开始的时间
     @Scheduled(fixedRate = 10000)
     public void scheduled21() throws InterruptedException {
         log.info(
-                "=====>>>>>开始fixedRate1  {}",
+                "=====>>>>>开始fixedRate1 {}",
                 TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
         TimeUnit.SECONDS.sleep(5);
-        log.info("=====>>>>>结束fixedRate1  {}", Thread.currentThread().getName());
+        log.info("=====>>>>>结束fixedRate1 {}", TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
     }
 
     @Scheduled(cron = "0/10 * * * * *")
     public void scheduled31() throws InterruptedException {
         log.info(
-                "=====>>>>>开始cron1  {}",
+                "=====>>>>>开始cron1 {}",
                 TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
         TimeUnit.SECONDS.sleep(5);
-        log.info("=====>>>>>结束cron1  {}", Thread.currentThread().getName());
+        log.info("=====>>>>>结束cron1 {}", TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
     }*/
 
 }

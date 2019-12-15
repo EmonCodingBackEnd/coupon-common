@@ -1,7 +1,7 @@
-package com.coding.coupon.common.cache.redis.timer.delay;
+package com.coding.coupon.common.timer.delay;
 
 import com.coding.coupon.common.cache.redis.AppRedisKey;
-import com.coding.coupon.common.cache.redis.timer.TimerPoolConfig;
+import com.coding.coupon.common.timer.TimerPoolConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RDelayedQueue;

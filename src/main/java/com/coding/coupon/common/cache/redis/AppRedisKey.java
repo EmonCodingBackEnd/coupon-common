@@ -27,6 +27,10 @@ public enum AppRedisKey implements AppDynamicRedisKey {
     EXAMPLE("serverName", "groupName", "example", "示例"),
     DELAY_QUEUE("DelayQueue", "延迟队列的名称"),
     MANAGE_PARAM_CACHE("manage", "param", "cache", "系统参数缓存"),
+    COUPON_TEMPLATE("coupon", "templateCode", "cache", "通用优惠券码 key 前缀"),
+    USER_COUPON_USABLE("user", "coupon", "usable", "用户当前所有可用的优惠券 key 前缀"),
+    USER_COUPON_USED("user", "coupon", "used", "用户当前所有已用的优惠券 key 前缀"),
+    USER_COUPON_EXPIRED("user", "coupon", "expired", "用户当前所有过期的优惠券 key 前缀"),
     ;
 
     private List<String> keyParts = new ArrayList<>();

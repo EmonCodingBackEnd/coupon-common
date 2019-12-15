@@ -115,4 +115,8 @@ public interface ConstantDefinition {
         /** 文件夹分隔符或者默认斜杠分隔符. */
         String FOLDER_SEPARATOR = "/";
     }
+
+    interface C_KAFKA {
+        String TOPIC = "coupon_user_op";
+    }
 }
