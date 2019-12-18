@@ -140,10 +140,10 @@ public interface DictDefinition {
 
     /** 【仅定义在代码】有效期规则. */
     @RequiredArgsConstructor
-    enum PeriodType implements BaseEnum<Integer> {
-        /** 绝对日期(固定日期). */
+    enum PeriodTypeEnum implements BaseEnum<Integer> {
+        /** 固定的绝对日期. */
         REGULAR(1, "绝对日期"),
-        /** 相对日期(变动日期，以领取之日开始计算). */
+        /** 变动的相对日期. */
         SHIFT(2, "相对日期"),
         ;
         @NonNull @Getter private Integer value;
