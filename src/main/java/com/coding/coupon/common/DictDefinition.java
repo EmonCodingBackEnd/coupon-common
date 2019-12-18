@@ -40,7 +40,7 @@ public interface DictDefinition {
     }
 
     /** 根据C类型的value值获取枚举实例，如果找不到则返回null. */
-    static <T, E extends BaseEnum> E getByValue(Class<E> enumClazz, T value) {
+    static <T, E extends BaseEnum<T>> E getByValue(Class<E> enumClazz, T value) {
         for (E each : enumClazz.getEnumConstants()) {
             if (each.getValue().equals(value)) {
                 return each;
@@ -50,7 +50,7 @@ public interface DictDefinition {
     }
 
     /** 根据C类型从value值获取枚举实例，如果找不到则抛异常. */
-    static <T, E extends BaseEnum> E getByValueNoisy(Class<E> enumClazz, T value) {
+    static <T, E extends BaseEnum<T>> E getByValueNoisy(Class<E> enumClazz, T value) {
         E e = getByValue(enumClazz, value);
         if (e == null) {
             log.error("【字典查询】根据字典值找不到对应字典, enumClazz={}, value={}", enumClazz, value);
@@ -90,72 +90,52 @@ public interface DictDefinition {
 
     /** 【仅定义在代码】商品上下架状态. */
     @RequiredArgsConstructor
-    enum ProductStatus implements BaseEnum<Integer> {
+    enum ProductStatusEnum implements BaseEnum<Integer> {
         /** 在架. */
         UP(0),
         /** 下架. */
         DOWN(1),
         ;
-        @NonNull private Integer value;
+        @NonNull @Getter private Integer value;
 
         public static final String NAME = "product_status";
-
-        @Override
-        public Integer getValue() {
-            return value;
-        }
     }
 
     /** 【仅定义在代码】优惠券类型. */
     @RequiredArgsConstructor
-    enum CouponCategory implements BaseEnum<Integer> {
+    enum CouponCategoryEnum implements BaseEnum<Integer> {
         MAN_JIAN(1, "满减券"),
         ZHE_KOU(2, "折扣券"),
         LI_JIAN(3, "满减券"),
         ;
-        @NonNull private Integer value;
+        @NonNull @Getter private Integer value;
         @NonNull @Getter private String desc;
 
         public static final String NAME = "coupon_category";
-
-        @Override
-        public Integer getValue() {
-            return value;
-        }
     }
 
     /** 【仅定义在代码】产品线. */
     @RequiredArgsConstructor
-    enum DistributeTarget implements BaseEnum<Integer> {
-        SINGLE(1, "单用户"),
-        MULTI(2, "多用户"),
-        ;
-        @NonNull private Integer value;
-        @NonNull @Getter private String desc;
-
-        public static final String NAME = "distribute_target";
-
-        @Override
-        public Integer getValue() {
-            return value;
-        }
-    }
-
-    /** 【仅定义在代码】产品线. */
-    @RequiredArgsConstructor
-    enum ProductLine implements BaseEnum<Integer> {
+    enum ProductLineEnum implements BaseEnum<Integer> {
         DA_MAO(1, "大猫"),
         DA_BAO(2, "大宝"),
         ;
-        @NonNull private Integer value;
+        @NonNull @Getter private Integer value;
         @NonNull @Getter private String desc;
 
         public static final String NAME = "product_line";
+    }
 
-        @Override
-        public Integer getValue() {
-            return value;
-        }
+    /** 【仅定义在代码】分发目标. */
+    @RequiredArgsConstructor
+    enum DistributeTargetEnum implements BaseEnum<Integer> {
+        SINGLE(1, "单用户"),
+        MULTI(2, "多用户"),
+        ;
+        @NonNull @Getter private Integer value;
+        @NonNull @Getter private String desc;
+
+        public static final String NAME = "distribute_target";
     }
 
     /** 【仅定义在代码】有效期规则. */
@@ -166,14 +146,9 @@ public interface DictDefinition {
         /** 相对日期(变动日期，以领取之日开始计算). */
         SHIFT(2, "相对日期"),
         ;
-        @NonNull private Integer value;
+        @NonNull @Getter private Integer value;
         @NonNull @Getter private String desc;
 
         public static final String NAME = "period_type";
-
-        @Override
-        public Integer getValue() {
-            return value;
-        }
     }
 }
