@@ -42,7 +42,7 @@ public class TemplateRule {
         private Long deadline;
 
         boolean validate() {
-            return null != DictDefinition.getByValue(DictDefinition.PeriodType.class, period)
+            return null != DictDefinition.getByValue(DictDefinition.PeriodTypeEnum.class, period)
                     && gap > 0
                     && deadline > 0;
         }
