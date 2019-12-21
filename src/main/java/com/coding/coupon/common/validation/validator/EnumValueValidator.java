@@ -25,7 +25,7 @@ public class EnumValueValidator implements ConstraintValidator<EnumValue, Object
         // 即使枚举又是 BaseEnum 的子类
         if (DictDefinition.BaseEnum.class.isAssignableFrom(enumClazz)
                 && Enum.class.isAssignableFrom(enumClazz)) {
-            return DictDefinition.getByValue(enumClazz, value) != null;
+            return DictDefinition.getByCode(enumClazz, value) != null;
         } else {
             if (value instanceof String) {
                 for (String strValue : strValues) {
