@@ -242,7 +242,7 @@ public interface DictDefinition {
             return getByCode(PeriodTypeEnum.class, code);
         }
 
-        public static CodPeriodTypeEnumeEnum ofCodeNoisy(Integer code) {
+        public static PeriodTypeEnum ofCodeNoisy(Integer code) {
             return getByCodeNoisy(PeriodTypeEnum.class, code);
         }
     }
