@@ -176,8 +176,12 @@ public interface DictDefinition {
 
         public static final String NAME = "coupon_category";
 
-        public static CodeEnum ofCode(Integer code) {
-            return getByCode(CodeEnum.class, code);
+        public static CouponCategoryEnum ofCode(Integer code) {
+            return getByCode(CouponCategoryEnum.class, code);
+        }
+
+        public static CouponCategoryEnum ofCodeNoisy(Integer code) {
+            return getByCodeNoisy(CouponCategoryEnum.class, code);
         }
     }
 
@@ -191,6 +195,14 @@ public interface DictDefinition {
         @NonNull @Getter private String desc;
 
         public static final String NAME = "product_line";
+
+        public static ProductLineEnum ofCode(Integer code) {
+            return getByCode(ProductLineEnum.class, code);
+        }
+
+        public static ProductLineEnum ofCodeNoisy(Integer code) {
+            return getByCodeNoisy(ProductLineEnum.class, code);
+        }
     }
 
     /** 【仅定义在代码】分发目标. */
@@ -204,8 +216,12 @@ public interface DictDefinition {
 
         public static final String NAME = "distribute_target";
 
-        public static CodeEnum ofCode(Integer code) {
-            return getByCode(CodeEnum.class, code);
+        public static DistributeTargetEnum ofCode(Integer code) {
+            return getByCode(DistributeTargetEnum.class, code);
+        }
+
+        public static DistributeTargetEnum ofCodeNoisy(Integer code) {
+            return getByCodeNoisy(DistributeTargetEnum.class, code);
         }
     }
 
@@ -222,8 +238,12 @@ public interface DictDefinition {
 
         public static final String NAME = "period_type";
 
-        public static CodeEnum ofCode(Integer code) {
-            return getByCode(CodeEnum.class, code);
+        public static PeriodTypeEnum ofCode(Integer code) {
+            return getByCode(PeriodTypeEnum.class, code);
+        }
+
+        public static CodPeriodTypeEnumeEnum ofCodeNoisy(Integer code) {
+            return getByCodeNoisy(PeriodTypeEnum.class, code);
         }
     }
 }
