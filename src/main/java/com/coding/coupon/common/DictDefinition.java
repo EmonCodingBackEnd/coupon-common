@@ -58,7 +58,7 @@ public interface DictDefinition {
     static <T, E extends BaseEnum<T>> E getByCodeNoisy(Class<E> enumClass, T code) {
         E e = getByCode(enumClass, code);
         if (e == null) {
-            log.error("【字典查询】根据字典值找不到对应字典, enumClazz={}, code={}", enumClass, code);
+            log.error("【字典查询】根据字典值找不到对应字典, enumClass={}, code={}", enumClass, code);
             throw new AppException(AppBaseStatus.systemExpectedError(), "根据字典值找不到对应字典");
         }
         return e;
@@ -78,7 +78,7 @@ public interface DictDefinition {
     static <T, E extends BaseEnum<T>> E getByDescNoisy(Class<E> enumClass, String desc) {
         E e = getByDesc(enumClass, desc);
         if (e == null) {
-            log.error("【字典查询】根据字典描述找不到对应字典, enumClazz={}, desc={}", enumClass, desc);
+            log.error("【字典查询】根据字典描述找不到对应字典, enumClass={}, desc={}", enumClass, desc);
             throw new AppException(AppBaseStatus.systemExpectedError(), "根据字典描述找不到对应字典");
         }
         return e;
